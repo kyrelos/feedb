@@ -1,0 +1,30 @@
+{% extends "feedb/base.html" %}
+{%load staticfiles%}
+{%block title%}Login{% endblock %}
+{%block jcss%}{%endblock jcss%}
+
+{%block content%}
+
+
+<div class="clistcontainer">
+    {% if form.has_errors %}
+    <p>Your username and password didn't match.
+    Please try again.</p>
+    {% endif %}
+    <div class="loginbox ui-widget-content ui-corner-all">
+	<div id='logheaad' class="ui-widget-header ui-corner-all"><h3>Staff Login</h3></div>
+	<form method="post" action=".">{% csrf_token %}
+		<p><!--label for="id_username">Username:</label-->
+		{{ form.username  }}</p>
+		<p><!--label for="id_password">Password:</label-->
+		{{ form.password }}</p>
+   		<!--label class="checkbox"-->
+          	<!--input  type="checkbox" value="remember-me"> Remember me
+        	</label-->
+		<input id='but1' type="submit" value="Login" />
+		<input type="hidden" name="next" value="/feedb/staff/redir" />
+	</form>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends "feedb/base.html" %}
+{%load staticfiles%}
+{%block title%}Companies{% endblock %}
+{%block jcss%}{%endblock jcss%}
+
+{%block content%}
+
+	<div class='container'>
+    	<h2>Welcome to Customer feedback
+        </h2>
+        <p> Here you can give your feedback, review, oppinion on any of the companies listed below. please click on the company you wish to submit your feedback to go to the company's feedback page. Thank you.
+        </p>
+    </div>
+    <div class='clistcontainer'>
+        {% if company_list%}
+            {% for company in company_list%}
+            
+        	<a href="{% url 'feedb:feedback_page' company.pk%}">
+            	<li class='clist' >
+            		<img src='{{MEDIA_URL}}{{company.logo}}' >
+                    <span class="ui-icon ui-icon-carat-1-e"></span>
+                    <span>{{company.name}}</span>
+            	</li>
+            </a>
+            {%endfor%}
+        {%else%}
+            <div class='container'>
+    	        <h2>No Companies Available</h2>        
+            </div>
+        {%endif%}
+            
+    
+    </div>
+    
+{%endblock content%}
+
+

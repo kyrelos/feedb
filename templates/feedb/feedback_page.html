@@ -1,0 +1,27 @@
+{% extends "feedb/base.html" %}
+{%load staticfiles%}
+{%block title%}Customer Page{% endblock %}
+{%block jcss%}{%endblock jcss%}
+
+{%block content%}
+    
+
+	<div class='container'>
+    	<div class=logo>
+    		<img src="{{MEDIA_URL}}{{company.logo}}"><span>{{company.tagline}}</span>
+        </div>
+    	<h2>Welcome to {{company.name}} Customer feedback page</h2>
+        <p> 
+        </p>
+    </div>
+    <div class='clistcontainer'>
+    	<form  method="post" action=".">{% csrf_token %}
+            {{ form.as_p }}
+            <input id="submit"type="submit" value="Submit">
+        </form>
+    </div>
+    
+   
+
+
+{%endblock %}

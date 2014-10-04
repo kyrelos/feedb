@@ -1,0 +1,40 @@
+{% extends "feedb/base.html" %}
+{%load staticfiles%}
+{%block title%}{{user.username}}{% endblock %}
+{%block jcss%}{%endblock jcss%}
+
+{%block content%}
+    {% if user.is_authenticated%}
+        {% if user.is_staff%}
+            <div class='container'>
+    	        <h2>Welcome {{user.username}}</h2>
+                <p>You have been assigned the following Companies</p>
+            </div>
+            <div class='clistcontainer'>
+            {% if company_list%}
+                {% for company in company_list%}
+                    <a href="{% url 'feedb:feedback_page' company.pk%}">
+            	        <li class='clist' >
+            		        <img src='{{MEDIA_URL}}{{company.logo}}' >
+                            <span class="ui-icon ui-icon-carat-1-e"></span>
+                            <span>{{company.name}}</span>
+            	        </li>
+                    </a>
+                {%endfor%}
+            {%else%}
+                <div class='container'>
+    	            <h2>No Companies Available</h2>        
+                </div>
+            {%endif%}           
+    
+            </div>
+        {%else%}
+            <div class='container'>
+    	        <h2>Welcome {{user.username}}</h2>
+                <p>Your Staff Status has not Been Activated. Please contact site Administrator.</p>
+            </div>
+        {% endif%}
+    {% endif%}    
+{%endblock content%}
+
+
